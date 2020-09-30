@@ -1,0 +1,33 @@
+spring:
+  profiles:
+    active: ${APP_PROFILE:dev}
+  application:
+    name: "example-service"
+    version: 1.0
+  datasource:
+    url: ${EXAMPLE_DB_FQDN:jdbc:h2:mem:users_database}
+    driverClassName: ${EXAMPLE_DB_DRIVER:org.h2.Driver}
+    username: ${EXAMPLE_DB_USERNAME:sa}
+    password: ${EXAMPLE_DB_PASSWORD:}
+  jpa:
+    database-platform: ${EXAMPLE_DB_DIALECT:org.hibernate.dialect.H2Dialect}
+    hibernate:
+      ddl-auto: ${EXAMPLE_DB_DDL:update}
+      format_sql: true
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+
+server:
+  port: 8080
+
+kafka:
+  boot:
+    server: localhost:9092
+  topic:
+    name: employee-announcement-topic
